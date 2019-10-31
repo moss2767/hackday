@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './App.css'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import { makeStyles } from '@material-ui/core/styles'
 import Header from './components/Header/Header'
 import Input from './components/Input/Input'
@@ -47,6 +47,7 @@ const App = () => {
   }
   return (
     <Container className={classes.root}>
+      <CssBaseline />
       <Header />
       <Input helpers={helpers} pwdToCheck={pwdToCheck}/>
       <ConditionalCard {...returnValue}/>
