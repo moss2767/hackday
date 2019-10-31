@@ -26,7 +26,7 @@ export default function SimpleCard (props) {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography className={classes.title} variant="h5">
+        <Typography className={classes.title} variant={props.heading || 'h5'}>
           {props.title}
         </Typography>
         <Typography component="p">
