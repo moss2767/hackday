@@ -3,9 +3,10 @@ import './App.css'
 import { makeStyles } from '@material-ui/core/styles'
 import Header from './components/Header/Header'
 import Input from './components/Input/Input'
-import Card from './components/Card/Card'
+import Card from './components/Cards/Card'
 import { Container } from '@material-ui/core'
 import checkPassword from './logic'
+import ConditionalCard from './components/Cards/ConditionalCard'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,21 +34,24 @@ const useStyles = makeStyles(theme => ({
 const App = () => {
   const classes = useStyles()
 
-  const [pwdToCheck, setPwdToCheck] = useState('')
+  const [pwdToCheck, setPwdToCheck] = useState()
 
   const [returnValue, setReturnValue] = useState('')
 
   const helpers = {
     handleChange: (event) => setPwdToCheck(event.target.value),
-    search: async () => setReturnValue(await checkPassword(pwdToCheck))
+    search: async (e) => {
+      e.preventDefault()
+      setReturnValue(await checkPassword(pwdToCheck))
+    }
   }
   return (
     <Container className={classes.root}>
       <Header />
       <Input helpers={helpers} pwdToCheck={pwdToCheck}/>
-      <h1> { returnValue.count ? (`Your password occurs in the database ${returnValue.count} times.`) : ''}</h1>
+      <ConditionalCard {...returnValue}/>
       <Card title='Test card' text='This is a boilerplate text about cryptography' />
-      <Card title='k-anonymity' text='"Given person-specific field-structured data, produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful."' />
+      <Card heading='h4' title='k-anonymity' text='"Given person-specific field-structured data, produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful."' />
     </Container>
   )
 }
