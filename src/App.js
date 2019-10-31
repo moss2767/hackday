@@ -1,6 +1,18 @@
-import React, { Component} from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import sha1 from 'js-sha1'
+import AppBar from '@material-ui/core/AppBar'
+import { makeStyles, Toolbar, Typography, Button } from '@material-ui/core';
+
+
+const useStyles = makeStyles(theme => ({
+root: {
+  flexGrow: 1,
+},
+button: {
+  margin: theme.spacing(1),
+}
+}))
 
 const hash = sha1('hunter2').toUpperCase();
 const hashPrefix = hash.substring(0, 5);
@@ -11,39 +23,49 @@ const search = (body, hash) => {
 
   // Every password hash is followed by a colon (:) and the password count
   const pattern = new RegExp(hash + ':(\\d+)');
-  console.log(pattern)
   const match = body.match(pattern);
-  console.log(match)
   if (match) {
     result.pwned = true;
     result.count = match[1];
   }
-  console.log(result)
+  // console.log(result)
   return result;
 };
 
-class App extends Component {
-  constructor(props) {
-    super(props)
+function App() {
+  const classes = useStyles()
 
-    this.state = {
-      data: null,
-    }
-  }
+  const [pwned, setPwned] = useState('click')
 
-  componentDidMount() {
-    fetch('https://api.pwnedpasswords.com/range/' + hashPrefix)
+  
+  const result = fetch('https://api.pwnedpasswords.com/range/' + hashPrefix)
     .then(response => response.text())
     .then(body => search(body, hashSuffix))
-    .catch(error => console.log('ERR', error)) 
-  }
+    .catch(error => console.log('ERR', error))
+  
+  // useEffect(() => {
+  //   const pwned = fetch('https://api.pwnedpasswords.com/range/' + hashPrefix)
+  //   .then(response => response.text())
+  //   .then(body => search(body, hashSuffix))
+  //   .catch(error => console.log('ERR', error)) 
+  // })
 
-  render() {
-
-    return (
-      <div className="App"> TEST RESULT IN CONSOLE</div>
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          <Typography variant="h2" color="inherit">
+            Hackday App
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Button onClick={() => setPwned(result.toString())} variant="contained" className={classes.button}>
+        {pwned}
+      </Button>
+      <p>{pwned}</p>
+    </div>
   );
 }
-}
+
 
 export default App;
