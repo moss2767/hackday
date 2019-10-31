@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, Paper, TextField } from '@material-ui/core'
-import checkPassword from '../logic'
+import { Button, Card, TextField } from '@material-ui/core'
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2)
@@ -20,18 +19,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Input () {
+export default function Input (props) {
   const classes = useStyles()
-  const [input, setInput] = useState('')
-
-  const handleChange = (event) => setInput(event.target.value)
-  const search = () => {
-    checkPassword(input)
-  }
 
   return (
-    <form className={classes.container} noValidate autoComplete="off">
-      <Paper className={classes.root}>
+    <Card className={classes.root}>
+      <form className={classes.container} onSubmit={props.helpers.search} noValidate autoComplete="off">
         <TextField
           id="filled-required"
           className={classes.textField}
@@ -39,19 +32,16 @@ export default function Input () {
           type="password"
           margin="normal"
           variant="filled"
-          onChange={handleChange}
-          value={input}
+          onChange={props.helpers.handleChange}
+          value={props.pwdToCheck}
         />
         <Button
-          onClick={search}
+          onClick={props.helpers.search}
           variant="contained"
           className={classes.button}>
-          Check Password
+        Check Password
         </Button>
-        <p>TESTING PURPOSES ONLY <br></br>
-           Your password is: {input}
-        </p>
-      </Paper>
-    </form>
+      </form>
+    </Card>
   )
 }
