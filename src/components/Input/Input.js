@@ -49,5 +49,5 @@ export default function Input (props) {
 
 Input.propTypes = {
   helpers: PropTypes.any,
-  pwdToCheck: PropTypes.func
+  pwdToCheck: PropTypes.string
 }
