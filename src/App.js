@@ -49,8 +49,8 @@ const App = () => {
     <Container className={classes.root}>
       <CssBaseline />
       <Header />
-      <Input helpers={helpers} pwdToCheck={pwdToCheck}/>
       <ConditionalCard {...returnValue}/>
+      <Input helpers={helpers} pwdToCheck={pwdToCheck}/>
       <Card title='Test card' text='This is a boilerplate text about cryptography' />
       <Card heading='h4' title='k-anonymity' text='"Given person-specific field-structured data, produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful."' />
     </Container>

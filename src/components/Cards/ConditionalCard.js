@@ -1,20 +1,18 @@
 import React from 'react'
-import Card from './Card'
+import PropTypes from 'prop-types'
 import WarningCard from './WarningCard'
+import SuccessCard from './SuccessCard'
 const ConditionalCard = (props) => {
   if ('compromised' in props) {
-    if (props.compromised) {
-      return (
-        <WarningCard props={props} />
-      )
-    } else {
-      return (
-        <Card title={'Good news!'} text={'Your password does not occur in the database'}/>
-      )
+    const compromised = props.compromised
+    if (compromised) {
+      return <WarningCard props={props} />
     }
-  } else {
-    return null
+    return <SuccessCard />
   }
+  return null
 }
-
+ConditionalCard.propTypes = {
+  compromised: PropTypes.bool
+}
 export default ConditionalCard
