@@ -9,9 +9,7 @@ const search = (body, hash) => {
     result.compromised = true
     result.count = match[1]
   }
-  // console.log(body)
-  // console.log(match)
-  // console.log(result)
+  console.log(result)
   return result
 }
 
