@@ -9,7 +9,8 @@ const search = (body, hash) => {
     result.compromised = true
     result.count = match[1]
   }
-  console.log(result)
+  console.log('The hashes matching the query', body)
+  console.log('The exact match, if any, and the number of occurences (comma-separated)', match[0])
   return result
 }
 
@@ -17,6 +18,10 @@ const checkPassword = query => {
   const hash = sha1(query).toUpperCase()
   const hashToSend = hash.substring(0, 5)
   const hashToVerify = hash.substring(5)
+
+  console.log('your hashed password', hash)
+  console.log('The part we send to the server', hashToSend)
+  console.log('The part we keep', hashToVerify)
 
   return fetch('https://api.pwnedpasswords.com/range/' + hashToSend)
     .then(response => response.text())

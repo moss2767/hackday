@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core'
+import { Card, CardContent, Typography } from '@material-ui/core'
+import { red } from '@material-ui/core/colors'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,6 +19,9 @@ const useStyles = makeStyles(theme => ({
   },
   pos: {
     marginBottom: 12
+  },
+  warning: {
+    backgroundColor: red
   }
 }))
 export default function SimpleCard (props) {
@@ -33,9 +37,6 @@ export default function SimpleCard (props) {
           {props.text}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   )
 }
