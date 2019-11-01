@@ -54,8 +54,7 @@ const App = () => {
         <ConditionalCard {...returnValue}/>
         <Input helpers={helpers} pwdToCheck={pwdToCheck}/>
         <SimpleExpansionPanel query={pwdToCheck}/>
-        <Card title='Test card' text='This is a boilerplate text about cryptography' />
-        <Card heading='h4' title='k-anonymity' text='"Given person-specific field-structured data, produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful."' />
+        <Card heading='h4' title='k-anonymity' text=' Aims to solve the problem: "Given person-specific field-structured data, produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful."' />
       </Container>
     </div>
   )
