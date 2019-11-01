@@ -19,7 +19,7 @@ export default function Header () {
       <AppBar position="static">
         <Toolbar variant="dense">
           <Typography variant="h5" color="inherit">
-              Hackday App
+              Secure Password Lookup
           </Typography>
         </Toolbar>
       </AppBar>

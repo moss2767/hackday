@@ -7,6 +7,7 @@ import Card from './components/Cards/Card'
 import { Container } from '@material-ui/core'
 import checkPassword from './logic'
 import ConditionalCard from './components/Cards/ConditionalCard'
+import SimpleExpansionPanel from './components/Cards/Explanation'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 const App = () => {
   const classes = useStyles()
 
-  const [pwdToCheck, setPwdToCheck] = useState()
+  const [pwdToCheck, setPwdToCheck] = useState('')
 
   const [returnValue, setReturnValue] = useState('')
 
@@ -46,14 +47,17 @@ const App = () => {
     }
   }
   return (
-    <Container className={classes.root}>
-      <CssBaseline />
+    <div>
       <Header />
-      <ConditionalCard {...returnValue}/>
-      <Input helpers={helpers} pwdToCheck={pwdToCheck}/>
-      <Card title='Test card' text='This is a boilerplate text about cryptography' />
-      <Card heading='h4' title='k-anonymity' text='"Given person-specific field-structured data, produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful."' />
-    </Container>
+      <Container className={classes.root}>
+        <CssBaseline />
+        <Input helpers={helpers} pwdToCheck={pwdToCheck}/>
+        <ConditionalCard {...returnValue}/>
+        <SimpleExpansionPanel query={pwdToCheck}/>
+        <Card title='Test card' text='This is a boilerplate text about cryptography' />
+        <Card heading='h4' title='k-anonymity' text='"Given person-specific field-structured data, produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful."' />
+      </Container>
+    </div>
   )
 }
 

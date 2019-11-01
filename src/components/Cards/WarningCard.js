@@ -1,8 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { red } from '@material-ui/core/colors'
 import PropTypes from 'prop-types'
-import { Card, CardContent, Typography } from '@material-ui/core'
+import { Card, CardContent, Typography, Divider } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,6 +11,9 @@ const useStyles = makeStyles(theme => ({
   card: {
     minWidth: 275
   },
+  title: {
+    textAlign: 'center'
+  },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -19,22 +21,20 @@ const useStyles = makeStyles(theme => ({
   },
   pos: {
     marginBottom: 12
-  },
-  warning: {
-    backgroundColor: red
   }
 }))
 
 export default function WarningCard (props) {
   const classes = useStyles()
   return (
-    <Card className='warning'>
+    <Card className={classes.card}>
       <CardContent>
         <Typography className={classes.title} variant='h3'>
-          {'Bad news!'}
+          Bad news!
         </Typography>
+        <Divider />
         <Typography component="p">
-          {`Your password occurs in the database ${props.props.count} times.`}
+          Your password occurs in the database {props.props.count} times.
         </Typography>
       </CardContent>
     </Card>
