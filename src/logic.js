@@ -1,4 +1,4 @@
-const sha1 = require('./sha1')
+import { sha1 } from './sha1'
 
 const search = (body, hash) => {
   const result = { compromised: false, count: 0 }
